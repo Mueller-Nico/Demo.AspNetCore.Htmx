@@ -7,7 +7,17 @@
     To insert rows into tables with htmx and use 'hx-swap-oop' at the same time,
     useTemplateFragments has to be set to true (not IE11 compatible)
     *@
-    <meta name="htmx-config" content='{"useTemplateFragments":"true"}'>
+    @*
+    Disabling the nav links during htmx requests and enabling them afterwards works with 'data-loading-class="disabled"'.
+    However, if the user uses the browser's navigation buttons, the nav links remain disabled. 
+    Obviously the page with the added class 'disable' goes into the cache. https://github.com/bigskysoftware/htmx/issues/1114
+
+    Therefore as a workaround until this is fixed:
+    "historyCacheSize": 0,"refreshOnHistoryMiss":"true". It disables the cache entirely.
+    or if you don't like disabling the nav links anyway', remove 'data-loading-class="disabled"' from then nav links.
+    *@
+    <meta name="htmx-config" content='{"useTemplateFragments":"true","historyCacheSize": 0,"refreshOnHistoryMiss":"true"}'>
+
 
     <title>@ViewData["Title"] - Demo.AspNetCore.Htmx</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
