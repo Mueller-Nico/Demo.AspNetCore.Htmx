@@ -32,9 +32,6 @@
                             <a data-loading-class="disabled" class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a data-loading-class="disabled" class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
                             <a data-loading-class="disabled" class="nav-link text-dark" asp-area="" asp-controller="Category" asp-action="Index">Categories</a>
                         </li>
                         <li class="nav-item">
@@ -57,8 +54,12 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - Demo.AspNetCore.Htmx - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div hx-boost="true" hx-push-url="true" hx-target="#mainId" class="container">
+            &copy; 2022 - Demo.AspNetCore.Htmx - 
+             <a data-loading-class="disabled" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy&nbsp;
+                <span class="htmx-indicator spinner-border spinner-border-sm" role="status" aria-hidden="true">
+                </span>
+             </a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
