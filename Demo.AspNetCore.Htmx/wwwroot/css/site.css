@@ -69,6 +69,8 @@ button[sty-mw=em9] {min-width: 9em;}
     background-color: rgba(0, 0, 0, 0.2);
 }
 
+/*Error Message  end*/
+
 @keyframes fadeIn {
     0% {
         opacity: 0;
@@ -82,4 +84,12 @@ button[sty-mw=em9] {min-width: 9em;}
 .fadeIn-800 {
     animation: fadeIn 800ms;
 }
-/*Error Message  end*/
+
+/*change display text of toggle element*/
+.text-toggle[aria-expanded=false] .text-expanded {
+    display: none;
+}
+
+.text-toggle[aria-expanded=true] .text-collapsed {
+    display: none;
+}
