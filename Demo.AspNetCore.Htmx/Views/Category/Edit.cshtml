@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-antiforgery="true" hx-target="#mainId" hx-post="/Category/Edit/@Model.CategoryId">
+        <form asp-antiforgery="true" hx-target="#mainId" hx-post="/Category/Edit/@Model.CategoryId" hx-trigger="confirmed">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="CategoryId" />
             <div class="form-group">
@@ -30,6 +30,6 @@
     </div>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+@{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
 }

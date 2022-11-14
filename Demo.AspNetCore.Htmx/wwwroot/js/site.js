@@ -58,4 +58,16 @@
             alert(evt.detail.xhr.statusText);
         }
     });
+
+    $(document)
+        .on('click', 'form button[type=submit]', function (e) {
+            var $form = $(e.target).parents('form');
+
+            e.preventDefault(); //always prevent the default action
+
+            $form.validate();
+            if ($form.valid()) {
+                htmx.trigger($form[0], "confirmed");
+            } 
+        });
 })();
