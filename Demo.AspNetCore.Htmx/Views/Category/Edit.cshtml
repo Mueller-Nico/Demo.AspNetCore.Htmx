@@ -24,11 +24,11 @@
                 <span asp-validation-for="CategoryName" class="text-danger"></span>
             </div>
             <div class="mt-2">
-                <button type="submit" class="btn btn-primary" sty-pl-2em>
+                <button type="submit" class="btn btn-primary" sty-pl-2em data-loading-disable>
                     Save
                     <partial name="_indicatorId" model="@idIndic1" />
                 </button>
-                <button hx-get="/Category/Index" hx-indicator="this" type="button" class="btn btn-outline-secondary" sty-pl-2em>
+                <button hx-get="/Category/Index" hx-indicator="this" type="button" class="btn btn-outline-secondary" sty-pl-2em data-loading-disable>
                     Back to List
                     <partial name="_indicator" />
                 </button>

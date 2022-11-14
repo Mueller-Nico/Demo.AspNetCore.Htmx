@@ -20,11 +20,11 @@
     </dl>
     
     <form asp-antiforgery="true" hx-target="#mainId">
-        <button type="button" class="btn btn-outline-secondary" hx-get="/Category/Index">
+        <button type="button" class="btn btn-outline-secondary" hx-get="/Category/Index" data-loading-disable>
             Back to List
             <partial name="_indicatorDnone" />
         </button>
-        <button class="btn btn-danger" hx-post="/Category/Delete/@Model.CategoryId">
+        <button class="btn btn-danger" hx-post="/Category/Delete/@Model.CategoryId" data-loading-disable>
             Delete
             <partial name="_indicatorDnone" />
         </button>
