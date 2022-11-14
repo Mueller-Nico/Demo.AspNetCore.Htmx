@@ -1,0 +1,8 @@
+﻿@model string
+@{
+    string id = $"id={@Model}";
+}
+
+<span class="htmx-indicator" @id>
+    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+</span>
