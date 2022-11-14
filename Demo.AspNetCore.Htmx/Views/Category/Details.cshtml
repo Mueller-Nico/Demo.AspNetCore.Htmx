@@ -18,7 +18,10 @@
         </dd>
     </dl>
 </div>
-<div hx-boost="true" hx-push-url="false" hx-target="#mainId" hx-indicator="this">
+@*'Back to List' has the same url as the 'nav-link' for 'Category'.
+'data-loading-states' defines a scope for the loading states so only elements within that scope are processed.
+The nav-link 'Category' remains enabled*@
+<div hx-boost="true" hx-push-url="false" hx-target="#mainId" hx-indicator="this" data-loading-states>
     <a asp-action="Edit" asp-route-id="@Model?.CategoryId" data-loading-class="disabled">Edit</a> |
     <a asp-action="Index" data-loading-class="disabled">Back to List</a>
     <partial name="_indicator" />

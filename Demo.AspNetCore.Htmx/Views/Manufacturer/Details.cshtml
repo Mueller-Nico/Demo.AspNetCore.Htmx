@@ -21,8 +21,10 @@
             @Html.DisplayFor(model => model.ManufacturerName)
         </dd>
     </dl>
-
-    <div hx-boost="true" hx-push-url="false" hx-target="#mainId">
+    @*'Back to List' has the same url as the 'nav-link' for 'Manufacturer'.
+    'data-loading-states' defines a scope for the loading states so only elements within that scope are processed.
+    The nav-link 'Manufacturer' remains enabled*@
+    <div hx-boost="true" hx-push-url="false" hx-target="#mainId" data-loading-states>
         <a asp-action="Edit" asp-route-id="@Model?.ManufacturerId" data-loading-class="disabled">Edit</a> |
         <a asp-action="Index" data-loading-class="disabled">Back to List</a>
     </div>

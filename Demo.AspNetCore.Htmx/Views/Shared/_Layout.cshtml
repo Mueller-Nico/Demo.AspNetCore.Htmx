@@ -38,20 +38,22 @@
                 </button>
                 <div hx-target="#mainId" class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul hx-boost="true" hx-push-url="true" hx-indicator="#idNavIndicator" data-loading-states class="navbar-nav flex-grow-1">
+                        @*data-loading-path:
+                        Allows filtering the processing of loading states only for specific requests based on the request path.*@
                         <li class="nav-item">
-                            <a data-loading-class="disabled" class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a data-loading-class="disabled" data-loading-path="/" class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a data-loading-class="disabled" class="nav-link text-dark" asp-area="" asp-controller="Category" asp-action="Index">Categories</a>
+                            <a data-loading-class="disabled" data-loading-path="/Category" class="nav-link text-dark" asp-area="" asp-controller="Category" asp-action="Index">Categories</a>
                         </li>
                         <li class="nav-item">
-                            <a data-loading-class="disabled" class="nav-link text-dark" asp-area="" asp-controller="Manufacturer" asp-action="Index">Manufacturers</a>
+                            <a data-loading-class="disabled" data-loading-path="/Manufacturer" class="nav-link text-dark" asp-area="" asp-controller="Manufacturer" asp-action="Index">Manufacturers</a>
                         </li>
                         <li class="nav-item">
-                            <a data-loading-class="disabled" class="nav-link text-dark" asp-area="" asp-controller="Model" asp-action="Index">Models</a>
+                            <a data-loading-class="disabled" data-loading-path="/Model" class="nav-link text-dark" asp-area="" asp-controller="Model" asp-action="Index">Models</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a data-loading-class="disabled" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Cascading selects</a>
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Cascading selects</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" asp-area="" asp-controller="Select2x" asp-action="Index">2 x</a></li>
                                 <li><a class="dropdown-item" asp-area="" asp-controller="Select3x" asp-action="Index">3 x</a></li>
