@@ -22,9 +22,11 @@
     <form asp-antiforgery="true" hx-target="#mainId">
         <button type="button" class="btn btn-outline-secondary" hx-get="/Category/Index">
             Back to List
+            <partial name="_indicatorDnone" />
         </button>
         <button class="btn btn-danger" hx-post="/Category/Delete/@Model.CategoryId">
             Delete
+            <partial name="_indicatorDnone" />
         </button>
     </form>
 </div>

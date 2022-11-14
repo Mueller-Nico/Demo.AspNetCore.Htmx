@@ -3,14 +3,18 @@
 @{
     ViewData["Title"] = "Create";
 }
-
+@{
+    string idIndic1 = "id" + Guid.NewGuid().ToString(); //guid to avoid ID conflicts
+    // The id idIndic1 assigns the indicator inside the save button to the form. 
+    // Without the id the indicator in the 'Back to List' button would also be triggered
+}
 <h1>Create</h1>
 
 <h4>Category</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form id="@ViewBag.idForm" asp-antiforgery="true" hx-target="#mainId" hx-post="/Category/Create" hx-trigger="confirmed">
+        <form id="@ViewBag.idForm" hx-indicator="#@idIndic1" asp-antiforgery="true" hx-target="#mainId" hx-post="/Category/Create" hx-trigger="confirmed">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="CategoryName" class="control-label"></label>
@@ -18,12 +22,16 @@
                 <span asp-validation-for="CategoryName" class="text-danger"></span>
             </div>
             <div class="mt-2">
-                <button type="submit" class="btn btn-primary w-50">
+                @* sty-pl-2em: Button text stays centered *@
+                <button type="submit" class="btn btn-primary" sty-pl-2em>
                     Create
+                    <partial name="_indicatorId" model="@idIndic1" />
                 </button>
-                <button hx-get="/Category/Index" type="button" class="btn btn-outline-secondary">
+                <button hx-get="/Category/Index" hx-indicator="this" type="button" class="btn btn-outline-secondary" sty-pl-2em>
                     Back to List
+                    <partial name="_indicator" />
                 </button>
+               
             </div>
         </form>
     </div>

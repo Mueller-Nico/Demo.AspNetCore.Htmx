@@ -6,25 +6,32 @@
 
 <h1>Create</h1>
 
-<h4>Manufacturer</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form id="@ViewBag.idForm" asp-antiforgery="true" hx-target="#mainId" hx-post="/Manufacturer/Create" hx-trigger="confirmed">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ManufacturerName" class="control-label"></label>
-                <input asp-for="ManufacturerName" class="form-control" />
-                <span asp-validation-for="ManufacturerName" class="text-danger"></span>
-            </div>
-            <div class="mt-2">
-                <button type="submit" class="btn btn-primary w-50">
-                    Create
-                </button>
-                <button hx-get="/Manufacturer/Index" type="button" class="btn btn-outline-secondary">
-                    Back to List
-                </button>
-            </div>
-        </form>
+<div hx-indicator="this">
+    <div>
+        <span class="h4">Manufacturer</span>
+        @{
+            await Html.RenderPartialAsync("_indicator");
+        }
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <form id="@ViewBag.idForm" asp-antiforgery="true" hx-target="#mainId" hx-post="/Manufacturer/Create" hx-trigger="confirmed">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="ManufacturerName" class="control-label"></label>
+                    <input asp-for="ManufacturerName" class="form-control" />
+                    <span asp-validation-for="ManufacturerName" class="text-danger"></span>
+                </div>
+                <div class="mt-2">
+                    <button type="submit" class="btn btn-primary" sty-mw="em7">
+                        Create
+                    </button>
+                    <button hx-get="/Manufacturer/Index" type="button" class="btn btn-outline-secondary">
+                        Back to List
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>

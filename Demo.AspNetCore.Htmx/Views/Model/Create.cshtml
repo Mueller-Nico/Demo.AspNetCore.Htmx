@@ -35,13 +35,14 @@
                 <input asp-for="Capacity" class="form-control" />
                 <span asp-validation-for="Capacity" class="text-danger"></span>
             </div>
-             <div class="mt-2">
-                <button type="submit" class="btn btn-primary w-50">
+            <div class="mt-2" hx-indicator="this">
+                <button type="submit" class="btn btn-primary" sty-mw="em7">
                     Save
                 </button>
                 <button hx-get="/Model/Index" type="button" class="btn btn-outline-secondary">
                     Back to List
                 </button>
+                <partial name="_indicator" />
             </div>
         </form>
     </div>

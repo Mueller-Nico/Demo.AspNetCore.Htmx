@@ -6,19 +6,24 @@
 
 <h1>Details</h1>
 
-<div>
-    <h4>Manufacturer</h4>
-    <hr />
+<div hx-indicator="this">
+    <div>
+        <span class="h4">Manufacturer</span>
+        @{
+            await Html.RenderPartialAsync("_indicator");
+        }
+    </div>
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ManufacturerName)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ManufacturerName)
         </dd>
     </dl>
-</div>
-<div hx-boost="true" hx-push-url="false" hx-target="#mainId">
-    <a asp-action="Edit" asp-route-id="@Model?.ManufacturerId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+
+    <div hx-boost="true" hx-push-url="false" hx-target="#mainId">
+        <a asp-action="Edit" asp-route-id="@Model?.ManufacturerId">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
 </div>
