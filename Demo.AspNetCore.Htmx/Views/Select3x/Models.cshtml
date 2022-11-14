@@ -1,0 +1,9 @@
+﻿@model List<Model>
+@foreach (var item in Model)
+{
+    <option value="@item.ModelId">@item.ModelName</option>
+}
+<option disabled selected hidden value="0">Pick a Model</option>
+<span id="idBike" hx-swap-oob="innerHTML">
+    Waiting Motorcyle Selection
+</span>

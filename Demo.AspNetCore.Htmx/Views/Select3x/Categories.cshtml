@@ -1,0 +1,6 @@
+﻿@model List<Category>
+
+@foreach (var item in Model)
+{
+     <option value="@item.CategoryId">@item.CategoryName</option>
+}
