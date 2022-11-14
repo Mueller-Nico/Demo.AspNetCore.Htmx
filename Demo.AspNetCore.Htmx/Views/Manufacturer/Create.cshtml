@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-antiforgery="true" hx-target="#mainId" hx-post="/Manufacturer/Create" hx-trigger="confirmed">
+        <form id="@ViewBag.idForm" asp-antiforgery="true" hx-target="#mainId" hx-post="/Manufacturer/Create" hx-trigger="confirmed">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="ManufacturerName" class="control-label"></label>
@@ -28,5 +28,3 @@
         </form>
     </div>
 </div>
-
-<script src="~/js/init.validation.js" asp-append-version="true"></script>

@@ -10,12 +10,14 @@ using Demo.AspNetCore.Htmx.Models;
 using Demo.AspNetCore.Htmx.Extensions;
 using System.Diagnostics;
 using Microsoft.CodeAnalysis;
+using Demo.AspNetCore.Htmx.Helper;
 
 namespace Demo.AspNetCore.Htmx.Controllers
 {
     public class CategoryController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private const string IdForm = "idCategoryForm";
 
         public CategoryController(ApplicationDbContext context)
         {
@@ -58,6 +60,8 @@ namespace Demo.AspNetCore.Htmx.Controllers
         // GET: Categories/Create
         public IActionResult Create()
         {
+            ViewBag.idForm = IdForm;
+            Response.AddHxHeader(IdForm, HxModeEnum.initValid);
             return PartialView();
         }
 
@@ -74,6 +78,8 @@ namespace Demo.AspNetCore.Htmx.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.idForm = IdForm;
+            Response.AddHxHeader(IdForm, HxModeEnum.initValid);
             return PartialView(category);
         }
 
@@ -90,6 +96,8 @@ namespace Demo.AspNetCore.Htmx.Controllers
             {
                 return NotFound();
             }
+            ViewBag.idForm = IdForm;
+            Response.AddHxHeader(IdForm, HxModeEnum.initValid);
             return PartialView(category);
         }
 
@@ -125,6 +133,8 @@ namespace Demo.AspNetCore.Htmx.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.idForm = IdForm;
+            Response.AddHxHeader(IdForm, HxModeEnum.initValid);
             return PartialView(category);
         }
 

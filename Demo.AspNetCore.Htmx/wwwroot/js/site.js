@@ -59,6 +59,23 @@
         }
     });
 
+    document.body.addEventListener("evtHtmxHeaderTrigger", function (evt) {
+        if (evt.detail.mode === "initValid") {
+            if (evt.detail.delay) {
+                setTimeout(function () {
+                    $.validator.unobtrusive.parse('#' + evt.detail.id);
+                }, evt.detail.delay);
+            }
+            else {
+                $.validator.unobtrusive.parse('#' + evt.detail.id);
+            }
+        }
+        else {
+            console.error("unkown mode");
+            return;
+        }
+    });
+
     $(document)
         .on('click', 'form button[type=submit]', function (e) {
             var $form = $(e.target).parents('form');

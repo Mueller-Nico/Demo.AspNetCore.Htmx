@@ -9,12 +9,14 @@ using Demo.AspNetCore.Htmx.Data;
 using Demo.AspNetCore.Htmx.Models;
 using Demo.AspNetCore.Htmx.Extensions;
 using System.Diagnostics;
+using Demo.AspNetCore.Htmx.Helper;
 
 namespace Demo.AspNetCore.Htmx.Controllers
 {
     public class ModelController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private const string IdForm = "idModelForm";
 
         public ModelController(ApplicationDbContext context)
         {
@@ -61,6 +63,8 @@ namespace Demo.AspNetCore.Htmx.Controllers
         {
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName");
             ViewData["ManufacturerId"] = new SelectList(_context.Manufacturers, "ManufacturerId", "ManufacturerName");
+            ViewBag.idForm = IdForm;
+            Response.AddHxHeader(IdForm, HxModeEnum.initValid);
             return PartialView();
         }
 
@@ -79,6 +83,8 @@ namespace Demo.AspNetCore.Htmx.Controllers
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", model.CategoryId);
             ViewData["ManufacturerId"] = new SelectList(_context.Manufacturers, "ManufacturerId", "ManufacturerName", model.ManufacturerId);
+            ViewBag.idForm = IdForm;
+            Response.AddHxHeader(IdForm, HxModeEnum.initValid);
             return PartialView(model);
         }
 
@@ -97,6 +103,8 @@ namespace Demo.AspNetCore.Htmx.Controllers
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", model.CategoryId);
             ViewData["ManufacturerId"] = new SelectList(_context.Manufacturers, "ManufacturerId", "ManufacturerName", model.ManufacturerId);
+            ViewBag.idForm = IdForm;
+            Response.AddHxHeader(IdForm, HxModeEnum.initValid);
             return PartialView(model);
         }
 
@@ -134,6 +142,8 @@ namespace Demo.AspNetCore.Htmx.Controllers
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", model.CategoryId);
             ViewData["ManufacturerId"] = new SelectList(_context.Manufacturers, "ManufacturerId", "ManufacturerName", model.ManufacturerId);
+            ViewBag.idForm = IdForm;
+            Response.AddHxHeader(IdForm, HxModeEnum.initValid);
             return PartialView(model);
         }
 

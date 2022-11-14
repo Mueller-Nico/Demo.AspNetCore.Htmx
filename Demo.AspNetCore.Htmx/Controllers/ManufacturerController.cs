@@ -10,12 +10,14 @@ using Demo.AspNetCore.Htmx.Models;
 using Demo.AspNetCore.Htmx.Extensions;
 using System.Diagnostics;
 using Microsoft.CodeAnalysis;
+using Demo.AspNetCore.Htmx.Helper;
 
 namespace Demo.AspNetCore.Htmx.Controllers
 {
     public class ManufacturerController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private const string IdForm = "idManufacturerForm";
 
         public ManufacturerController(ApplicationDbContext context)
         {
@@ -57,6 +59,8 @@ namespace Demo.AspNetCore.Htmx.Controllers
         // GET: Manufacturer/Create
         public IActionResult Create()
         {
+            ViewBag.idForm = IdForm;
+            Response.AddHxHeader(IdForm, HxModeEnum.initValid);
             return PartialView();
         }
 
@@ -73,6 +77,8 @@ namespace Demo.AspNetCore.Htmx.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.idForm = IdForm;
+            Response.AddHxHeader(IdForm, HxModeEnum.initValid);
             return PartialView(manufacturer);
         }
 
@@ -89,6 +95,8 @@ namespace Demo.AspNetCore.Htmx.Controllers
             {
                 return NotFound();
             }
+            ViewBag.idForm = IdForm;
+            Response.AddHxHeader(IdForm, HxModeEnum.initValid);
             return PartialView(manufacturer);
         }
 
@@ -124,6 +132,8 @@ namespace Demo.AspNetCore.Htmx.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.idForm = IdForm;
+            Response.AddHxHeader(IdForm, HxModeEnum.initValid);
             return PartialView(manufacturer);
         }
 
