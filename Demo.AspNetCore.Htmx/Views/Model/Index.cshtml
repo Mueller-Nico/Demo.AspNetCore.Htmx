@@ -7,7 +7,7 @@
 <h1>Index</h1>
 
 <p hx-boost="true" hx-push-url="false" hx-target="#mainId" hx-indicator="this">
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" data-loading-class="disabled">Create New</a>
     <partial name="_indicator" />
 </p>
 <table class="table">
@@ -53,9 +53,9 @@
                 </td>
                 <td hx-boost="true" hx-push-url="false" hx-target="#mainId" hx-indicator="#@id">
                     <partial name="_indicatorId" model="@id" />
-                    <a asp-action="Edit" asp-route-id="@item.ModelId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.ModelId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.ModelId">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.ModelId" data-loading-class="disabled">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ModelId" data-loading-class="disabled">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ModelId" data-loading-class="disabled">Delete</a>
                 </td>
             </tr>
         }
