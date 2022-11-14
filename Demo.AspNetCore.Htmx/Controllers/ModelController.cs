@@ -41,6 +41,9 @@ namespace Demo.AspNetCore.Htmx.Controllers
         // GET: Model/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            // see the loading spinner (Remove in entire file for production)
+            Thread.Sleep(TimeSpan.FromSeconds(1));
+
             if (id == null || _context.Models == null)
             {
                 return NotFound();
@@ -61,6 +64,8 @@ namespace Demo.AspNetCore.Htmx.Controllers
         // GET: Model/Create
         public IActionResult Create()
         {
+            Thread.Sleep(TimeSpan.FromSeconds(1));
+
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName");
             ViewData["ManufacturerId"] = new SelectList(_context.Manufacturers, "ManufacturerId", "ManufacturerName");
             ViewBag.idForm = IdForm;
@@ -75,6 +80,8 @@ namespace Demo.AspNetCore.Htmx.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ModelId,CategoryId,ManufacturerId,ModelName,Power_KW,Capacity,Price")] Model model)
         {
+            Thread.Sleep(TimeSpan.FromSeconds(1));
+
             if (ModelState.IsValid)
             {
                 _context.Add(model);
@@ -91,6 +98,8 @@ namespace Demo.AspNetCore.Htmx.Controllers
         // GET: Model/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            Thread.Sleep(TimeSpan.FromSeconds(1));
+
             if (id == null || _context.Models == null)
             {
                 return NotFound();
@@ -115,6 +124,8 @@ namespace Demo.AspNetCore.Htmx.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ModelId,CategoryId,ManufacturerId,ModelName,Power_KW,Capacity,Price")] Model model)
         {
+            Thread.Sleep(TimeSpan.FromSeconds(1));
+
             if (id != model.ModelId)
             {
                 return NotFound();
@@ -150,6 +161,8 @@ namespace Demo.AspNetCore.Htmx.Controllers
         // GET: Model/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            Thread.Sleep(TimeSpan.FromSeconds(1));
+
             if (id == null || _context.Models == null)
             {
                 return NotFound();
@@ -172,6 +185,8 @@ namespace Demo.AspNetCore.Htmx.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            Thread.Sleep(TimeSpan.FromSeconds(1));
+
             if (_context.Models == null)
             {
                 return Problem("Entity set 'ApplicationDbContext.Model'  is null.");

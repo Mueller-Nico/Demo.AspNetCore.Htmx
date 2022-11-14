@@ -27,6 +27,9 @@ namespace Demo.AspNetCore.Htmx.Controllers
         // GET: Categories
         public async Task<IActionResult> Index()
         {
+            // see the loading spinner (Remove in entire file for production)
+            Thread.Sleep(TimeSpan.FromSeconds(1));
+
             var items = await _context.Categories.OrderBy(x => x.CategoryName).ToListAsync();
 
             if (Request.IsHtmxRequest())
@@ -42,6 +45,8 @@ namespace Demo.AspNetCore.Htmx.Controllers
         // GET: Categories/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            Thread.Sleep(TimeSpan.FromSeconds(1));
+
             if (id == null || _context.Categories == null)
             {
                 return NotFound();
@@ -60,6 +65,8 @@ namespace Demo.AspNetCore.Htmx.Controllers
         // GET: Categories/Create
         public IActionResult Create()
         {
+            Thread.Sleep(TimeSpan.FromSeconds(1));
+
             ViewBag.idForm = IdForm;
             Response.AddHxHeader(IdForm, HxModeEnum.initValid);
             return PartialView();
@@ -72,6 +79,8 @@ namespace Demo.AspNetCore.Htmx.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CategoryId,CategoryName")] Category category)
         {
+            Thread.Sleep(TimeSpan.FromSeconds(1));
+
             if (ModelState.IsValid)
             {
                 _context.Add(category);
@@ -86,6 +95,8 @@ namespace Demo.AspNetCore.Htmx.Controllers
         // GET: Categories/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            Thread.Sleep(TimeSpan.FromSeconds(1));
+
             if (id == null || _context.Categories == null)
             {
                 return NotFound();
@@ -108,6 +119,8 @@ namespace Demo.AspNetCore.Htmx.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("CategoryId,CategoryName")] Category category)
         {
+            Thread.Sleep(TimeSpan.FromSeconds(1));
+
             if (id != category.CategoryId)
             {
                 return NotFound();
@@ -141,6 +154,8 @@ namespace Demo.AspNetCore.Htmx.Controllers
         // GET: Categories/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            Thread.Sleep(TimeSpan.FromSeconds(1));
+
             if (id == null || _context.Categories == null)
             {
                 return NotFound();
@@ -161,6 +176,8 @@ namespace Demo.AspNetCore.Htmx.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            Thread.Sleep(TimeSpan.FromSeconds(1));
+
             if (_context.Categories == null)
             {
                 return Problem("Entity set 'ApplicationDbContext.Category'  is null.");

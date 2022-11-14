@@ -21,3 +21,23 @@ body {
     pointer-events: none;
     opacity: 0.5;
 }
+/* center text in button if indicator is in the button */
+button[sty-pl-2em] {
+    padding-left: 2em;
+}
+
+button[sty-mw=em7] {min-width: 7em;}
+button[sty-mw=em9] {min-width: 9em;}
+
+/* https://htmx.org/attributes/hx-indicator/ */
+.dnone-indicator {
+    display: none
+}
+
+.htmx-request .dnone-indicator {
+    display: inline
+}
+
+.htmx-request.dnone-indicator {
+    display: inline
+}

@@ -27,6 +27,9 @@ namespace Demo.AspNetCore.Htmx.Controllers
         // GET: Manufacturer
         public async Task<IActionResult> Index()
         {
+            // see the loading spinner (Remove in entire file for production)
+            Thread.Sleep(TimeSpan.FromSeconds(1));
+
             var items = await _context.Manufacturers.OrderBy(x => x.ManufacturerName).ToListAsync();
             if (Request.IsHtmxRequest())
             {
@@ -41,6 +44,8 @@ namespace Demo.AspNetCore.Htmx.Controllers
         // GET: Manufacturer/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            Thread.Sleep(TimeSpan.FromSeconds(1));
+
             if (id == null || _context.Manufacturers == null)
             {
                 return NotFound();
@@ -59,6 +64,8 @@ namespace Demo.AspNetCore.Htmx.Controllers
         // GET: Manufacturer/Create
         public IActionResult Create()
         {
+            Thread.Sleep(TimeSpan.FromSeconds(1));
+
             ViewBag.idForm = IdForm;
             Response.AddHxHeader(IdForm, HxModeEnum.initValid);
             return PartialView();
@@ -71,6 +78,8 @@ namespace Demo.AspNetCore.Htmx.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ManufacturerId,ManufacturerName")] Manufacturer manufacturer)
         {
+            Thread.Sleep(TimeSpan.FromSeconds(1));
+
             if (ModelState.IsValid)
             {
                 _context.Add(manufacturer);
@@ -85,6 +94,8 @@ namespace Demo.AspNetCore.Htmx.Controllers
         // GET: Manufacturer/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            Thread.Sleep(TimeSpan.FromSeconds(1));
+
             if (id == null || _context.Manufacturers == null)
             {
                 return NotFound();
@@ -107,6 +118,8 @@ namespace Demo.AspNetCore.Htmx.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ManufacturerId,ManufacturerName")] Manufacturer manufacturer)
         {
+            Thread.Sleep(TimeSpan.FromSeconds(1));
+
             if (id != manufacturer.ManufacturerId)
             {
                 return NotFound();
@@ -140,6 +153,8 @@ namespace Demo.AspNetCore.Htmx.Controllers
         // GET: Manufacturer/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            Thread.Sleep(TimeSpan.FromSeconds(1));
+
             if (id == null || _context.Manufacturers == null)
             {
                 return NotFound();
@@ -160,6 +175,8 @@ namespace Demo.AspNetCore.Htmx.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            Thread.Sleep(TimeSpan.FromSeconds(1));
+
             if (_context.Manufacturers == null)
             {
                 return Problem("Entity set 'ApplicationDbContext.Manufacturer'  is null.");
