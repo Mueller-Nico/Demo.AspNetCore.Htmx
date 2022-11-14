@@ -48,14 +48,14 @@ namespace Demo.AspNetCore.Htmx.Controllers
 
             if (id == null || _context.Manufacturers == null)
             {
-                return NotFound();
+                return Problem("Manufacturer not found", statusCode: 404, title: "Error");
             }
 
             var manufacturer = await _context.Manufacturers
                 .FirstOrDefaultAsync(m => m.ManufacturerId == id);
             if (manufacturer == null)
             {
-                return NotFound();
+                return Problem("Manufacturer not found", statusCode: 404, title: "Error");
             }
 
             return PartialView(manufacturer);
@@ -98,13 +98,13 @@ namespace Demo.AspNetCore.Htmx.Controllers
 
             if (id == null || _context.Manufacturers == null)
             {
-                return NotFound();
+                return Problem("Manufacturer not found", statusCode: 404, title: "Error");
             }
 
             var manufacturer = await _context.Manufacturers.FindAsync(id);
             if (manufacturer == null)
             {
-                return NotFound();
+                return Problem("Manufacturer not found", statusCode: 404, title: "Error");
             }
             ViewBag.idForm = IdForm;
             Response.AddHxHeader(IdForm, HxModeEnum.initValid);
@@ -122,7 +122,7 @@ namespace Demo.AspNetCore.Htmx.Controllers
 
             if (id != manufacturer.ManufacturerId)
             {
-                return NotFound();
+                return Problem("Manufacturer not found", statusCode: 404, title: "Error");
             }
 
             if (ModelState.IsValid)
@@ -136,7 +136,7 @@ namespace Demo.AspNetCore.Htmx.Controllers
                 {
                     if (!ManufacturerExists(manufacturer.ManufacturerId))
                     {
-                        return NotFound();
+                        return Problem("Manufacturer not found", statusCode: 404, title: "Error");
                     }
                     else
                     {
@@ -157,14 +157,14 @@ namespace Demo.AspNetCore.Htmx.Controllers
 
             if (id == null || _context.Manufacturers == null)
             {
-                return NotFound();
+                return Problem("Manufacturer not found", statusCode: 404, title: "Error");
             }
 
             var manufacturer = await _context.Manufacturers
                 .FirstOrDefaultAsync(m => m.ManufacturerId == id);
             if (manufacturer == null)
             {
-                return NotFound();
+                return Problem("Manufacturer not found", statusCode: 404, title: "Error");
             }
 
             return PartialView(manufacturer);
@@ -186,7 +186,7 @@ namespace Demo.AspNetCore.Htmx.Controllers
             {
                 _context.Manufacturers.Remove(manufacturer);
             }
-            
+
             await _context.SaveChangesAsync();
 
             // use the Button 'Back to List' to load the list
@@ -202,7 +202,7 @@ namespace Demo.AspNetCore.Htmx.Controllers
 
         private bool ManufacturerExists(int id)
         {
-          return _context.Manufacturers.Any(e => e.ManufacturerId == id);
+            return _context.Manufacturers.Any(e => e.ManufacturerId == id);
         }
     }
 }

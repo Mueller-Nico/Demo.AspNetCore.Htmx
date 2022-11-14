@@ -46,7 +46,7 @@ namespace Demo.AspNetCore.Htmx.Controllers
 
             if (id == null || _context.Models == null)
             {
-                return NotFound();
+                return Problem("Model not found", statusCode: 404, title: "Error");
             }
 
             var model = await _context.Models
@@ -55,7 +55,7 @@ namespace Demo.AspNetCore.Htmx.Controllers
                 .FirstOrDefaultAsync(m => m.ModelId == id);
             if (model == null)
             {
-                return NotFound();
+                return Problem("Model not found", statusCode: 404, title: "Error");
             }
 
             return PartialView(model);
@@ -102,13 +102,13 @@ namespace Demo.AspNetCore.Htmx.Controllers
 
             if (id == null || _context.Models == null)
             {
-                return NotFound();
+                return Problem("Model not found", statusCode: 404, title: "Error");
             }
 
             var model = await _context.Models.FindAsync(id);
             if (model == null)
             {
-                return NotFound();
+                return Problem("Model not found", statusCode: 404, title: "Error");
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", model.CategoryId);
             ViewData["ManufacturerId"] = new SelectList(_context.Manufacturers, "ManufacturerId", "ManufacturerName", model.ManufacturerId);
@@ -128,7 +128,7 @@ namespace Demo.AspNetCore.Htmx.Controllers
 
             if (id != model.ModelId)
             {
-                return NotFound();
+                return Problem("Model not found", statusCode: 404, title: "Error");
             }
 
             if (ModelState.IsValid)
@@ -142,7 +142,7 @@ namespace Demo.AspNetCore.Htmx.Controllers
                 {
                     if (!ModelExists(model.ModelId))
                     {
-                        return NotFound();
+                        return Problem("Model not found", statusCode: 404, title: "Error");
                     }
                     else
                     {
@@ -165,7 +165,7 @@ namespace Demo.AspNetCore.Htmx.Controllers
 
             if (id == null || _context.Models == null)
             {
-                return NotFound();
+                return Problem("Model not found", statusCode: 404, title: "Error");
             }
 
             var model = await _context.Models
@@ -174,7 +174,7 @@ namespace Demo.AspNetCore.Htmx.Controllers
                 .FirstOrDefaultAsync(m => m.ModelId == id);
             if (model == null)
             {
-                return NotFound();
+                return Problem("Model not found", statusCode: 404, title: "Error");
             }
 
             return PartialView(model);

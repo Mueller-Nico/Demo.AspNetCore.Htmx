@@ -41,3 +41,45 @@ button[sty-mw=em9] {min-width: 9em;}
 .htmx-request.dnone-indicator {
     display: inline
 }
+
+/*Error Message  start*/
+#idErrorMessage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    visibility: hidden;
+    min-width: 20em;
+    max-width: 32em;
+}
+
+
+#idOverlay {
+    display: none;
+    position: fixed;
+    overflow: auto;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    z-index: 1050;
+    /*fixed navbar is 1030 */
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.fadeIn-800 {
+    animation: fadeIn 800ms;
+}
+/*Error Message  end*/

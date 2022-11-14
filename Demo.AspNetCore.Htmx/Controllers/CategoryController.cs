@@ -45,18 +45,19 @@ namespace Demo.AspNetCore.Htmx.Controllers
         // GET: Categories/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+
             Thread.Sleep(TimeSpan.FromSeconds(1));
 
             if (id == null || _context.Categories == null)
             {
-                return NotFound();
+                return Problem("Category not found", statusCode: 404, title: "Error");
             }
 
             var category = await _context.Categories
                 .FirstOrDefaultAsync(m => m.CategoryId == id);
             if (category == null)
             {
-                return NotFound();
+                return Problem("Category not found", statusCode: 404, title: "Error");
             }
 
             return PartialView(category);
@@ -99,13 +100,13 @@ namespace Demo.AspNetCore.Htmx.Controllers
 
             if (id == null || _context.Categories == null)
             {
-                return NotFound();
+                return Problem("Category not found", statusCode: 404, title: "Error");
             }
 
             var category = await _context.Categories.FindAsync(id);
             if (category == null)
             {
-                return NotFound();
+                return Problem("Category not found", statusCode: 404, title: "Error");
             }
             ViewBag.idForm = IdForm;
             Response.AddHxHeader(IdForm, HxModeEnum.initValid);
@@ -123,7 +124,7 @@ namespace Demo.AspNetCore.Htmx.Controllers
 
             if (id != category.CategoryId)
             {
-                return NotFound();
+                return Problem("Category not found", statusCode: 404, title: "Error");
             }
 
             if (ModelState.IsValid)
@@ -137,7 +138,7 @@ namespace Demo.AspNetCore.Htmx.Controllers
                 {
                     if (!CategoryExists(category.CategoryId))
                     {
-                        return NotFound();
+                        return Problem("Category not found", statusCode: 404, title: "Error");
                     }
                     else
                     {
@@ -158,14 +159,14 @@ namespace Demo.AspNetCore.Htmx.Controllers
 
             if (id == null || _context.Categories == null)
             {
-                return NotFound();
+                return Problem("Category not found", statusCode: 404, title: "Error");
             }
 
             var category = await _context.Categories
                 .FirstOrDefaultAsync(m => m.CategoryId == id);
             if (category == null)
             {
-                return NotFound();
+                return Problem("Category not found", statusCode: 404, title: "Error");
             }
 
             return PartialView(category);
@@ -189,7 +190,7 @@ namespace Demo.AspNetCore.Htmx.Controllers
             }
 
             await _context.SaveChangesAsync();
-            
+
             // use the Button 'Back to List' to load the list
             Response.Headers.Add("HX-Trigger-After-Settle", "evtHxBackToList");
 
@@ -203,7 +204,7 @@ namespace Demo.AspNetCore.Htmx.Controllers
 
         private bool CategoryExists(int id)
         {
-          return _context.Categories.Any(e => e.CategoryId == id);
+            return _context.Categories.Any(e => e.CategoryId == id);
         }
     }
 }

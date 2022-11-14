@@ -16,7 +16,7 @@
     "historyCacheSize": 0,"refreshOnHistoryMiss":"true". It disables the cache entirely.
     or if you don't like disabling the nav links anyway', remove 'data-loading-class="disabled"' from then nav links.
     *@
-    <meta name="htmx-config" content='{"useTemplateFragments":"true","historyCacheSize": 0,"refreshOnHistoryMiss":"true"}'>
+    <meta name="htmx-config" content='{"useTemplateFragments":"true","historyCacheSize": 0,"refreshOnHistoryMiss":"true","timeout":10000}'>
 
 
     <title>@ViewData["Title"] - Demo.AspNetCore.Htmx</title>
@@ -62,7 +62,10 @@
             @RenderBody()
         </main>
     </div>
-
+    <div id="idOverlay">
+        <div id="idErrorMessage">
+        </div>
+    </div>
     <footer class="border-top footer text-muted">
         <div hx-boost="true" hx-push-url="true" hx-target="#mainId" class="container">
             &copy; 2022 - Demo.AspNetCore.Htmx - 
