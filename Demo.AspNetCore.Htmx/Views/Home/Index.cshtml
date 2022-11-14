@@ -1,6 +1,10 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    if (!string.IsNullOrEmpty(ViewData["TitlePartial"]?.ToString()))
+    {
+        <title>@ViewData["TitlePartial"] - Demo.AspNetCore.Htmx</title>
+    }
 }
+
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>

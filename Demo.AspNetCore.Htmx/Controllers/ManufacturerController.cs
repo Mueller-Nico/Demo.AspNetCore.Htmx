@@ -33,10 +33,12 @@ namespace Demo.AspNetCore.Htmx.Controllers
             var items = await _context.Manufacturers.OrderBy(x => x.ManufacturerName).ToListAsync();
             if (Request.IsHtmxRequest())
             {
+                ViewData["TitlePartial"] = "Manufacturers";
                 return PartialView(items);
             }
             else
             {
+                ViewData["Title"] = "Manufacturers";
                 return View(items);
             }
         }

@@ -34,10 +34,12 @@ namespace Demo.AspNetCore.Htmx.Controllers
 
             if (Request.IsHtmxRequest())
             {
+                ViewData["TitlePartial"] = "Categories";
                 return PartialView(items);
             }
             else
             {
+                ViewData["Title"] = "Categories";
                 return View(items);
             }
         }
@@ -155,6 +157,7 @@ namespace Demo.AspNetCore.Htmx.Controllers
         // GET: Categories/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+
             Thread.Sleep(TimeSpan.FromSeconds(1));
 
             if (id == null || _context.Categories == null)

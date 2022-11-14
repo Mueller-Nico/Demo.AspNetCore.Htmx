@@ -159,6 +159,23 @@
         //console.info(evt.detail);
     });
 
+    document.body.addEventListener('htmx:beforeSwap', function (evt) {
+
+        var tmp = evt.detail.serverResponse.trimStart();
+        var tagStart = '<title>';
+        if (!tmp.startsWith(tagStart)) {
+            return;
+        }
+
+        var tagEnd = '</title>';
+        var indexEnd = tmp.indexOf(tagEnd);
+        if (indexEnd === -1) {
+            return;
+        }
+        evt.detail.serverResponse = tmp.substring(indexEnd + tagEnd.length);
+
+        document.title = tmp.substring(tagStart.length, indexEnd);
+    });
 
     document.body.addEventListener("evtHtmxHeaderTrigger", function (evt) {
         if (evt.detail.mode === "initValid") {

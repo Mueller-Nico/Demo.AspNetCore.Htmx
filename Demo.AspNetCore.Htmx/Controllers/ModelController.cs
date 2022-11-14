@@ -30,10 +30,12 @@ namespace Demo.AspNetCore.Htmx.Controllers
             var items = await applicationDbContext.OrderBy(x => x.Manufacturer.ManufacturerName).ThenBy(x => x.ModelName).ToListAsync();
             if (Request.IsHtmxRequest())
             {
+                ViewData["TitlePartial"] = "Models";
                 return PartialView(items);
             }
             else
             {
+                ViewData["Title"] = "Models";
                 return View(items);
             }
         }

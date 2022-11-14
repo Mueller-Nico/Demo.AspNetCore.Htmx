@@ -20,10 +20,12 @@ namespace Demo.AspNetCore.Htmx.Controllers
             Thread.Sleep(TimeSpan.FromSeconds(2));
             if (Request.IsHtmxRequest())
             {
+                ViewData["TitlePartial"] = "Home";
                 return PartialView();
             }
             else
             {
+                ViewData["Title"] = "Home";
                 return View();
             }
         }

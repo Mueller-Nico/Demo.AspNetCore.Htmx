@@ -32,8 +32,10 @@ namespace Demo.AspNetCore.Htmx
 
                 if (Request.IsHtmxRequest())
                 {
+                    ViewData["TitlePartial"] = "Select2x";
                     return PartialView(model);
                 }
+                ViewData["Title"] = "Select2x";
                 return View(model);
 
             }

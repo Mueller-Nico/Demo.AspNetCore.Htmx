@@ -1,4 +1,10 @@
 ﻿@model IEnumerable<Demo.AspNetCore.Htmx.Models.Category>
+@{
+    if (!string.IsNullOrEmpty(ViewData["TitlePartial"]?.ToString()))
+    {
+        <title>@ViewData["TitlePartial"] - Demo.AspNetCore.Htmx</title>
+    }
+}
 
 <h4>Categories</h4>
 

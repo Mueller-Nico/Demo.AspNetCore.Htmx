@@ -31,8 +31,10 @@ namespace Demo.AspNetCore.Htmx
 
                 if (Request.IsHtmxRequest())
                 {
+                    ViewData["TitlePartial"] = "Select3x";
                     return PartialView(model);
                 }
+                ViewData["Title"] = "Select3x";
                 return View(model);
             }
             return Problem("Entity set 'ApplicationDbContext.Categories'  is null.");

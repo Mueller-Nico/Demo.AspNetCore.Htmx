@@ -1,4 +1,10 @@
 ﻿@model Model
+@{
+    if (!string.IsNullOrEmpty(ViewData["TitlePartial"]?.ToString()))
+    {
+        <title>@ViewData["TitlePartial"] - Demo.AspNetCore.Htmx</title>
+    }
+}
 <div class="row justify-content-center" hx-ext="loading-states">
     <h4 class="text-center"> Choose your Motorcycle</h4>
     <div class="card p-4 col-md-10 col-lg-8">
