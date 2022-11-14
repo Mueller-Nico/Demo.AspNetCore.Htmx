@@ -1,0 +1,29 @@
+﻿@model Model
+<div class="row justify-content-center">
+    <h4 class="text-center"> Choose your Motorcycle</h4>
+    <div class="card p-4 col-md-10 col-lg-8">
+        <div class="form-group" hx-indicator="#indicator">
+            <label>Manufacturers</label>
+            <select data-loading-disable asp-for="ManufacturerId" class="form-control" hx-get="Select2x/Models" hx-target="#models">
+                <partial name="Manufacturers" model="@ViewBag.Manufacturers" />
+                <option disabled hidden selected value="">Pick a Manufacturer</option>
+            </select>
+
+        </div>
+        <div class="form-group mt-2">
+            <label>Models</label> <span id="indicator" class="htmx-indicator spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            <select data-loading-disable asp-for="ModelId" class="form-control" id="models"
+                    hx-get="/Select2x/SelectedBike/"
+                    hx-target="#idBike">
+                <option disabled selected value="">Pick a Manufacturer First</option>
+            </select>
+        </div>
+
+        <div class="alert alert-success mt-3" role="alert">
+            <h5 id="idBike" class="alert-heading text-center">
+                Waiting Motorcyle Selection
+            </h5>
+        </div>
+
+    </div>
+</div>
