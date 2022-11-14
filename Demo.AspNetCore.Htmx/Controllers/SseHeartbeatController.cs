@@ -9,12 +9,11 @@ namespace Demo.AspNetCore.Htmx.Controllers
         {
             if (Request.IsHtmxRequest())
             {
+                ViewData["TitlePartial"] = "SSE Heartbeat";
                 return PartialView();
             }
-            else
-            {
-                return View();
-            }
+            ViewData["Title"] = "SSE Heartbeat";
+            return View();
         }
     }
 }

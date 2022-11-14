@@ -32,8 +32,10 @@ namespace Demo.AspNetCore.Htmx
 
                 if (Request.IsHtmxRequest())
                 {
+                    ViewData["TitlePartial"] = "SSE Insert Row";
                     return PartialView(model);
                 }
+                ViewData["Title"] = "SSE Insert Row";
                 return View(model);
 
             }
