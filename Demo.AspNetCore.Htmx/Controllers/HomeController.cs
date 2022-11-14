@@ -17,7 +17,7 @@ namespace Demo.AspNetCore.Htmx.Controllers
 
         public IActionResult Index()
         {
-
+            Thread.Sleep(TimeSpan.FromSeconds(2));
             if (Request.IsHtmxRequest())
             {
                 return PartialView();
@@ -30,6 +30,7 @@ namespace Demo.AspNetCore.Htmx.Controllers
 
         public IActionResult Privacy()
         {
+            Thread.Sleep(TimeSpan.FromSeconds(2));
             if (Request.IsHtmxRequest())
             {
                 return PartialView();

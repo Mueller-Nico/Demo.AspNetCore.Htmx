@@ -7,15 +7,16 @@
     To insert rows into tables with htmx and use 'hx-swap-oop' at the same time,
     useTemplateFragments has to be set to true (not IE11 compatible)
     *@
-    <meta name="htmx-config" content='{"useTemplateFragments":"true"}'> 
+    <meta name="htmx-config" content='{"useTemplateFragments":"true"}'>
 
     <title>@ViewData["Title"] - Demo.AspNetCore.Htmx</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Demo.AspNetCore.Htmx.styles.css" asp-append-version="true" />
     <script src="~/lib/htmx.org/dist/htmx.js"></script>
+    <script src="~/lib/htmx.org/dist/ext/loading-states.js"></script>
 </head>
-<body>
+<body hx-ext="loading-states">
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
@@ -26,21 +27,21 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div hx-target="#mainId" class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul hx-boost="true" hx-push-url="true" hx-indicator="#idNavIndicator" class="navbar-nav flex-grow-1">
+                    <ul hx-boost="true" hx-push-url="true" hx-indicator="#idNavIndicator" data-loading-states class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a data-loading-class="disabled" class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a data-loading-class="disabled" class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Category" asp-action="Index">Categories</a>
+                            <a data-loading-class="disabled" class="nav-link text-dark" asp-area="" asp-controller="Category" asp-action="Index">Categories</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Manufacturer" asp-action="Index">Manufacturers</a>
+                            <a data-loading-class="disabled" class="nav-link text-dark" asp-area="" asp-controller="Manufacturer" asp-action="Index">Manufacturers</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Model" asp-action="Index">Models</a>
+                            <a data-loading-class="disabled" class="nav-link text-dark" asp-area="" asp-controller="Model" asp-action="Index">Models</a>
                         </li>
                     </ul>
                 </div>
@@ -50,7 +51,7 @@
     <noscript><h2>This website requires JavaScript to be enabled to function properly</h2></noscript>
 
     <div class="container">
-        <main id="mainId" role="main" class="pb-3" >
+        <main id="mainId" role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
