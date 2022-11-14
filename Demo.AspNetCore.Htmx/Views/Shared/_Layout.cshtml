@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="~/Demo.AspNetCore.Htmx.styles.css" asp-append-version="true" />
     <script src="~/lib/htmx.org/dist/htmx.js"></script>
     <script src="~/lib/htmx.org/dist/ext/loading-states.js"></script>
+    <script src="~/lib/htmx.org/dist/ext/sse.js"></script>
+    <script src="~/lib/htmx.org/dist/ext/client-side-templates.js"></script>
 </head>
 <body hx-ext="loading-states">
     <header>
@@ -58,6 +60,12 @@
                                 <li><a class="dropdown-item" asp-area="" asp-controller="Select3x" asp-action="Index">3 x</a></li>
                             </ul>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-black" href="#" role="button" data-bs-toggle="dropdown">SSE</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" asp-area="" asp-controller="SseHeartbeat" asp-action="Index">Heartbeat</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -88,6 +96,7 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <script src="~/lib/mustache/mustache.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 </body>
 </html>

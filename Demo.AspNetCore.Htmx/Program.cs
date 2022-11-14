@@ -1,6 +1,9 @@
 using Demo.AspNetCore.Htmx.Data;
 using Demo.AspNetCore.Htmx.Extensions;
+using Demo.AspNetCore.Htmx.Services;
+using Lib.AspNetCore.ServerSentEvents;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +23,21 @@ builder.Services.AddAntiforgery(options =>
     options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
     options.Cookie.IsEssential = true;
 });
+
+
+// Lib.AspNetCore.ServerSentEvents by Tomasz Peczek is used for sse.
+// see https://github.com/tpeczek/Lib.AspNetCore.ServerSentEvents
+// and https://tpeczek.github.io/Lib.AspNetCore.ServerSentEvents/articles/getting-started.html
+
+builder.Services.AddServerSentEvents();
+
+builder.Services.AddSingleton<IHostedService, SseHeartbeatService>();
+
+builder.Services.AddResponseCompression(options =>
+{
+    options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { "text/event-stream" });
+});
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -63,5 +81,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapServerSentEvents("/sse-heartbeat");
 
 app.Run();

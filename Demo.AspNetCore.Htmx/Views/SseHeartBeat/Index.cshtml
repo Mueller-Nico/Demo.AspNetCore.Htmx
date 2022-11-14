@@ -1,0 +1,17 @@
+﻿
+<div class="row justify-content-center">
+    <div hx-ext="client-side-templates" hx-swap="afterbegin" hx-target="#idsseOutput" class="col-md-10 col-lg-7">
+        <div class="card-header text-center">
+            Messages
+        </div>
+        <div id="idsseOutput" class="card text-center" hx-disable></div>
+        <div hx-ext="sse" sse-connect="/sse-heartbeat" mustache-template="idTemplateSseHeartbeat">
+            <div sse-swap="message">
+            </div>
+        </div>
+    </div>
+</div>
+
+<template id="idTemplateSseHeartbeat">
+    <div class="fadeIn-800">{{Message}}</div>
+</template>
