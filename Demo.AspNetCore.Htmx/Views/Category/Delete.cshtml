@@ -20,7 +20,7 @@
     </dl>
     
     <form asp-antiforgery="true" hx-target="#mainId">
-        <button type="button" class="btn btn-outline-secondary" hx-get="/Category/Index" data-loading-disable>
+        <button hx-trigger="click,evtHxBackToList from:body delay:1s" type="button" class="btn btn-outline-secondary" hx-get="/Category/Index" data-loading-disable>
             Back to List
             <partial name="_indicatorDnone" />
         </button>

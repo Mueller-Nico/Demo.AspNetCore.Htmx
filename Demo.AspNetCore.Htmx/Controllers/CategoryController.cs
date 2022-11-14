@@ -187,9 +187,18 @@ namespace Demo.AspNetCore.Htmx.Controllers
             {
                 _context.Categories.Remove(category);
             }
-            
+
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            
+            // use the Button 'Back to List' to load the list
+            Response.Headers.Add("HX-Trigger-After-Settle", "evtHxBackToList");
+
+            // Send confirmation and replace submit button with it
+            string selector = "button[hx-post^=\"/Category/Delete/\"]";
+            HttpContext.Response.Headers.Add("HX-Retarget", selector);
+            HttpContext.Response.Headers.Add("HX-Reswap", "outerHTML");
+
+            return PartialView("_successFormPost", "Deleted");
         }
 
         private bool CategoryExists(int id)

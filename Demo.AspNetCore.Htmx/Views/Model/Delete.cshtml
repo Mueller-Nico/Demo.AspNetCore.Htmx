@@ -43,7 +43,7 @@
         </dd>
     </dl>
     <form asp-antiforgery="true" hx-target="#mainId" hx-indicator="this">
-        <button type="button" class="btn btn-outline-secondary" hx-get="/Model/Index" data-loading-disable>
+        <button hx-trigger="click,evtHxBackToList from:body delay:1s" type="button" class="btn btn-outline-secondary" hx-get="/Model/Index" data-loading-disable>
             Back to List
         </button>
         <button class="btn btn-danger" hx-post="/Model/Delete/@Model.ModelId" data-loading-disable>
