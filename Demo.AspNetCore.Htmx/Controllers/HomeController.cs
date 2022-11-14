@@ -1,4 +1,5 @@
-﻿using Demo.AspNetCore.Htmx.Models;
+using Demo.AspNetCore.Htmx.Extensions;
+using Demo.AspNetCore.Htmx.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -16,13 +17,29 @@ namespace Demo.AspNetCore.Htmx.Controllers
 
         public IActionResult Index()
         {
-            return View();
+
+            if (Request.IsHtmxRequest())
+            {
+                return PartialView();
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public IActionResult Privacy()
         {
-            return View();
+            if (Request.IsHtmxRequest())
+            {
+                return PartialView();
+            }
+            else
+            {
+                return View();
+            }
         }
+
         /// <summary>
         /// The user enters a URL for a nonexistent page in the address bar
         /// </summary>

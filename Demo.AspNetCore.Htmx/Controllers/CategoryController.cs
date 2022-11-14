@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Demo.AspNetCore.Htmx.Data;
 using Demo.AspNetCore.Htmx.Models;
+using Demo.AspNetCore.Htmx.Extensions;
+using System.Diagnostics;
+using Microsoft.CodeAnalysis;
 
 namespace Demo.AspNetCore.Htmx.Controllers
 {
@@ -22,7 +25,16 @@ namespace Demo.AspNetCore.Htmx.Controllers
         // GET: Categories
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Categories.OrderBy(x=>x.CategoryName).ToListAsync());
+            var items = await _context.Categories.OrderBy(x => x.CategoryName).ToListAsync();
+
+            if (Request.IsHtmxRequest())
+            {
+                return PartialView(items);
+            }
+            else
+            {
+                return View(items);
+            }
         }
 
         // GET: Categories/Details/5

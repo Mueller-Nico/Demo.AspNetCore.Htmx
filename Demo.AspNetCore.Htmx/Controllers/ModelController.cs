@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Demo.AspNetCore.Htmx.Data;
 using Demo.AspNetCore.Htmx.Models;
+using Demo.AspNetCore.Htmx.Extensions;
+using System.Diagnostics;
 
 namespace Demo.AspNetCore.Htmx.Controllers
 {
@@ -23,8 +25,16 @@ namespace Demo.AspNetCore.Htmx.Controllers
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Models.Include(m => m.Category).Include(m => m.Manufacturer);
-            return View(await applicationDbContext.OrderBy(x => x.Manufacturer.ManufacturerName).ThenBy(x=>x.ModelName).ToListAsync());
-         }
+            var items = await applicationDbContext.OrderBy(x => x.Manufacturer.ManufacturerName).ThenBy(x => x.ModelName).ToListAsync();
+            if (Request.IsHtmxRequest())
+            {
+                return PartialView(items);
+            }
+            else
+            {
+                return View(items);
+            }
+        }
 
         // GET: Model/Details/5
         public async Task<IActionResult> Details(int? id)
