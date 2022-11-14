@@ -1,21 +1,15 @@
 ﻿@model Demo.AspNetCore.Htmx.Models.Manufacturer
 
-@{
-    ViewData["Title"] = "Create";
-}
-
-<h1>Create</h1>
-
 <div hx-indicator="this">
     <div>
-        <span class="h4">Manufacturer</span>
+        <span class="h4">Create Manufacturer</span>
         @{
             await Html.RenderPartialAsync("_indicator");
         }
     </div>
     <hr />
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <form id="@ViewBag.idForm" asp-antiforgery="true" hx-target="#mainId" hx-post="/Manufacturer/Create" hx-trigger="confirmed">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">

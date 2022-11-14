@@ -18,7 +18,6 @@
     *@
     <meta name="htmx-config" content='{"useTemplateFragments":"true","historyCacheSize": 0,"refreshOnHistoryMiss":"true","timeout":10000}'>
 
-
     <title>@ViewData["Title"] - Demo.AspNetCore.Htmx</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -53,7 +52,7 @@
                             <a data-loading-class="disabled" data-loading-path="/Model" class="nav-link text-dark" asp-area="" asp-controller="Model" asp-action="Index">Models</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Cascading selects</a>
+                            <a class="nav-link dropdown-toggle text-black" href="#" role="button" data-bs-toggle="dropdown">Cascading selects</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" asp-area="" asp-controller="Select2x" asp-action="Index">2 x</a></li>
                                 <li><a class="dropdown-item" asp-area="" asp-controller="Select3x" asp-action="Index">3 x</a></li>

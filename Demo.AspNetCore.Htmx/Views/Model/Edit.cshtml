@@ -1,12 +1,6 @@
 ﻿@model Demo.AspNetCore.Htmx.Models.Model
 
-@{
-    ViewData["Title"] = "Edit";
-}
-
-<h1>Edit</h1>
-
-<h4>Model</h4>
+<h4>Edit Model</h4>
 <hr />
 
 <div class="row">
@@ -40,7 +34,7 @@
                 <span asp-validation-for="Capacity" class="text-danger"></span>
             </div>
             <div class="mt-2" hx-indicator="this">
-                <button type="submit" class="btn btn-primary" sty-mw="em7"data-loading-disable>
+                <button type="submit" class="btn btn-primary" sty-mw="em7" data-loading-disable>
                     Save
                 </button>
                 <button hx-get="/Model/Index" type="button" class="btn btn-outline-secondary" data-loading-disable>

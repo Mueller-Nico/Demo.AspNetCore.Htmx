@@ -1,16 +1,12 @@
 ﻿@model Demo.AspNetCore.Htmx.Models.Category
 
 @{
-    ViewData["Title"] = "Create";
-}
-@{
     string idIndic1 = "id" + Guid.NewGuid().ToString(); //guid to avoid ID conflicts
-    // The id idIndic1 assigns the indicator inside the save button to the form. 
-    // Without the id the indicator in the 'Back to List' button would also be triggered
+                                                        // The id idIndic1 assigns the indicator inside the save button to the form.
+                                                        // Without the id the indicator in the 'Back to List' button would also be triggered
 }
-<h1>Create</h1>
 
-<h4>Category</h4>
+<h4>Create Category</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -31,7 +27,7 @@
                     Back to List
                     <partial name="_indicator" />
                 </button>
-               
+
             </div>
         </form>
     </div>

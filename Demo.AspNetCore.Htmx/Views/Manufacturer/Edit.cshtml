@@ -1,13 +1,8 @@
 ﻿@model Demo.AspNetCore.Htmx.Models.Manufacturer
 
-@{
-    ViewData["Title"] = "Edit";
-}
-
-<h1>Edit</h1>
 <div hx-indicator="this">
     <div>
-        <span class="h4">Manufacturer</span>
+        <span class="h4">Edit Manufacturer</span>
         @{
             await Html.RenderPartialAsync("_indicator");
         }

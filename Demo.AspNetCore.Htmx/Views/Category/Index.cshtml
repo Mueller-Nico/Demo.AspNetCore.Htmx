@@ -1,10 +1,6 @@
 ﻿@model IEnumerable<Demo.AspNetCore.Htmx.Models.Category>
 
-@{
-    ViewData["Title"] = "Index";
-}
-
-<h1>Index</h1>
+<h4>Categories</h4>
 
 <p hx-boost="true" hx-push-url="false" hx-target="#mainId" hx-indicator="this">
     <a asp-action="Create" data-loading-class="disabled">Create New</a>
