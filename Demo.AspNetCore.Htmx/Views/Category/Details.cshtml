@@ -19,7 +19,7 @@
     </dl>
 </div>
 <div hx-boost="true" hx-push-url="false" hx-target="#mainId" hx-indicator="this">
-    <a asp-action="Edit" asp-route-id="@Model?.CategoryId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.CategoryId" data-loading-class="disabled">Edit</a> |
+    <a asp-action="Index" data-loading-class="disabled">Back to List</a>
     <partial name="_indicator" />
 </div>

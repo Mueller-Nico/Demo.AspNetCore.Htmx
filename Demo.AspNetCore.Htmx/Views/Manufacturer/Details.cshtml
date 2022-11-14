@@ -23,7 +23,7 @@
     </dl>
 
     <div hx-boost="true" hx-push-url="false" hx-target="#mainId">
-        <a asp-action="Edit" asp-route-id="@Model?.ManufacturerId">Edit</a> |
-        <a asp-action="Index">Back to List</a>
+        <a asp-action="Edit" asp-route-id="@Model?.ManufacturerId" data-loading-class="disabled">Edit</a> |
+        <a asp-action="Index" data-loading-class="disabled">Back to List</a>
     </div>
 </div>
