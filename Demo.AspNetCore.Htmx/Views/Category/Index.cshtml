@@ -6,7 +6,7 @@
 
 <h1>Index</h1>
 
-<p>
+<p hx-boost="true" hx-push-url="false" hx-target="#mainId">
     <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
@@ -24,7 +24,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.CategoryName)
             </td>
-            <td>
+            <td hx-boost="true" hx-push-url="false" hx-target="#mainId">
                 <a asp-action="Edit" asp-route-id="@item.CategoryId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.CategoryId">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.CategoryId">Delete</a>

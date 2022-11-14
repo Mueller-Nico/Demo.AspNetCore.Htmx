@@ -42,10 +42,12 @@
             @Html.DisplayFor(model => model.Manufacturer.ManufacturerName)
         </dd>
     </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="ModelId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+    <form asp-antiforgery="true" hx-target="#mainId">
+        <button type="button" class="btn btn-outline-secondary" hx-get="/Model/Index">
+            Back to List
+        </button>
+        <button class="btn btn-danger" hx-post="/Model/Delete/@Model.ModelId">
+            Delete
+        </button>
     </form>
 </div>

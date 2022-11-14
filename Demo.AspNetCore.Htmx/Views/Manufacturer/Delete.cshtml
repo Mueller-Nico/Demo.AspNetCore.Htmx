@@ -19,9 +19,12 @@
         </dd>
     </dl>
     
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="ManufacturerId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+    <form asp-antiforgery="true" hx-target="#mainId">
+        <button type="button" class="btn btn-outline-secondary" hx-get="/Manufacturer/Index">
+            Back to List
+        </button>
+        <button class="btn btn-danger" hx-post="/Manufacturer/Delete/@Model.ManufacturerId">
+            Delete
+        </button>
     </form>
 </div>

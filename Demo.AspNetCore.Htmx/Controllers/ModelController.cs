@@ -53,7 +53,7 @@ namespace Demo.AspNetCore.Htmx.Controllers
                 return NotFound();
             }
 
-            return View(model);
+            return PartialView(model);
         }
 
         // GET: Model/Create
@@ -61,7 +61,7 @@ namespace Demo.AspNetCore.Htmx.Controllers
         {
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName");
             ViewData["ManufacturerId"] = new SelectList(_context.Manufacturers, "ManufacturerId", "ManufacturerName");
-            return View();
+            return PartialView();
         }
 
         // POST: Model/Create
@@ -79,7 +79,7 @@ namespace Demo.AspNetCore.Htmx.Controllers
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", model.CategoryId);
             ViewData["ManufacturerId"] = new SelectList(_context.Manufacturers, "ManufacturerId", "ManufacturerName", model.ManufacturerId);
-            return View(model);
+            return PartialView(model);
         }
 
         // GET: Model/Edit/5
@@ -97,7 +97,7 @@ namespace Demo.AspNetCore.Htmx.Controllers
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", model.CategoryId);
             ViewData["ManufacturerId"] = new SelectList(_context.Manufacturers, "ManufacturerId", "ManufacturerName", model.ManufacturerId);
-            return View(model);
+            return PartialView(model);
         }
 
         // POST: Model/Edit/5
@@ -134,7 +134,7 @@ namespace Demo.AspNetCore.Htmx.Controllers
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", model.CategoryId);
             ViewData["ManufacturerId"] = new SelectList(_context.Manufacturers, "ManufacturerId", "ManufacturerName", model.ManufacturerId);
-            return View(model);
+            return PartialView(model);
         }
 
         // GET: Model/Delete/5
@@ -154,7 +154,7 @@ namespace Demo.AspNetCore.Htmx.Controllers
                 return NotFound();
             }
 
-            return View(model);
+            return PartialView(model);
         }
 
         // POST: Model/Delete/5

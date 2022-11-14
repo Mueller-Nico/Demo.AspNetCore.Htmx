@@ -52,13 +52,13 @@ namespace Demo.AspNetCore.Htmx.Controllers
                 return NotFound();
             }
 
-            return View(category);
+            return PartialView(category);
         }
 
         // GET: Categories/Create
         public IActionResult Create()
         {
-            return View();
+            return PartialView();
         }
 
         // POST: Categories/Create
@@ -74,7 +74,7 @@ namespace Demo.AspNetCore.Htmx.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            return PartialView(category);
         }
 
         // GET: Categories/Edit/5
@@ -90,7 +90,7 @@ namespace Demo.AspNetCore.Htmx.Controllers
             {
                 return NotFound();
             }
-            return View(category);
+            return PartialView(category);
         }
 
         // POST: Categories/Edit/5
@@ -125,7 +125,7 @@ namespace Demo.AspNetCore.Htmx.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            return PartialView(category);
         }
 
         // GET: Categories/Delete/5
@@ -143,7 +143,7 @@ namespace Demo.AspNetCore.Htmx.Controllers
                 return NotFound();
             }
 
-            return View(category);
+            return PartialView(category);
         }
 
         // POST: Categories/Delete/5

@@ -51,13 +51,13 @@ namespace Demo.AspNetCore.Htmx.Controllers
                 return NotFound();
             }
 
-            return View(manufacturer);
+            return PartialView(manufacturer);
         }
 
         // GET: Manufacturer/Create
         public IActionResult Create()
         {
-            return View();
+            return PartialView();
         }
 
         // POST: Manufacturer/Create
@@ -73,7 +73,7 @@ namespace Demo.AspNetCore.Htmx.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(manufacturer);
+            return PartialView(manufacturer);
         }
 
         // GET: Manufacturer/Edit/5
@@ -89,7 +89,7 @@ namespace Demo.AspNetCore.Htmx.Controllers
             {
                 return NotFound();
             }
-            return View(manufacturer);
+            return PartialView(manufacturer);
         }
 
         // POST: Manufacturer/Edit/5
@@ -124,7 +124,7 @@ namespace Demo.AspNetCore.Htmx.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(manufacturer);
+            return PartialView(manufacturer);
         }
 
         // GET: Manufacturer/Delete/5
@@ -142,7 +142,7 @@ namespace Demo.AspNetCore.Htmx.Controllers
                 return NotFound();
             }
 
-            return View(manufacturer);
+            return PartialView(manufacturer);
         }
 
         // POST: Manufacturer/Delete/5

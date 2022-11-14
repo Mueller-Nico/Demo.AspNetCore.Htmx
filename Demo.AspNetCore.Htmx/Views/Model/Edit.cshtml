@@ -8,9 +8,10 @@
 
 <h4>Model</h4>
 <hr />
+
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-antiforgery="true" hx-target="#mainId" hx-post="/Model/Edit/@Model.ModelId">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ModelId" />
             <div class="form-group">
@@ -38,15 +39,16 @@
                 <input asp-for="Capacity" class="form-control" />
                 <span asp-validation-for="Capacity" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+            <div class="mt-2">
+                <button type="submit" class="btn btn-primary w-50">
+                    Save
+                </button>
+                <button hx-get="/Model/Index" type="button" class="btn btn-outline-secondary">
+                    Back to List
+                </button>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
