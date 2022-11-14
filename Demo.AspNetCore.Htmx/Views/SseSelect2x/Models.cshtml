@@ -1,0 +1,6 @@
+﻿@model List<Model>
+<option disabled hidden selected value="">Pick a Model</option>
+@foreach (var item in Model)
+{
+    <option value="@item.ModelId">@item.ModelName</option>
+}

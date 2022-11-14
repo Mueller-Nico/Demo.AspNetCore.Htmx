@@ -1,10 +1,13 @@
 using Demo.AspNetCore.Htmx.Data;
 using Demo.AspNetCore.Htmx.Extensions;
 using Demo.AspNetCore.Htmx.Services;
+using Demo.AspNetCore.Htmx.Services.SseNotifications;
 using Lib.AspNetCore.ServerSentEvents;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,14 +27,22 @@ builder.Services.AddAntiforgery(options =>
     options.Cookie.IsEssential = true;
 });
 
-
+// SSE
 // Lib.AspNetCore.ServerSentEvents by Tomasz Peczek is used for sse.
 // see https://github.com/tpeczek/Lib.AspNetCore.ServerSentEvents
 // and https://tpeczek.github.io/Lib.AspNetCore.ServerSentEvents/articles/getting-started.html
-
 builder.Services.AddServerSentEvents();
 
+// Registers custom ServerSentEventsService which will be used by second middleware, otherwise they would end up sharing connected users.
+builder.Services.AddServerSentEvents<IServerSentEventsService, ServerSentEventsService>(options =>
+{
+    options.ReconnectInterval = 5000;
+});
+
+
 builder.Services.AddSingleton<IHostedService, SseHeartbeatService>();
+builder.Services.AddTransient<INotificationsService, NotificationsService>();
+
 
 builder.Services.AddResponseCompression(options =>
 {
@@ -83,5 +94,6 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapServerSentEvents("/sse-heartbeat");
+app.MapServerSentEvents<ServerSentEventsService>("/sse-motorbikes");
 
 app.Run();

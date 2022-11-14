@@ -1,0 +1,85 @@
+﻿@model Model
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card-header text-center border">
+            <h5 class="text-info">Open the url in an additional browser.</h5>
+            <div class="h-6 text-info">Open the developer tools and watch the network traffic.</div>
+
+            <hr />
+            <h5> Choose a Motorbike</h5>
+        </div>
+        <div class="border p-3">
+            <div class="form-group" hx-indicator="#indicator">
+                <label>Manufacturers</label>
+                <select asp-for="ManufacturerId" class="form-control" hx-get="/SseSelect2x/Models" hx-target="#ModelId">
+                    <partial name="Manufacturers" model="@ViewBag.Manufacturers" />
+                    <option disabled hidden selected value="">Pick a Manufacturer</option>
+                </select>
+
+            </div>
+            <form asp-antiforgery="true" class="form-group mt-2">
+                <label>Models</label> <span id="indicator" class="htmx-indicator spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                <select asp-for="ModelId" class="form-control"
+                        hx-post="/SseSelect2x/SelectedBike/"
+                        hx-swap="#idHint">
+                    <option disabled selected value="">Pick a Manufacturer First</option>
+                </select>
+            </form>
+        </div>
+    </div>
+    <div id="idHint"></div>
+    <div class="justify-content-center mt-3">
+        <div class="card-header text-center border">
+            SSE Messages
+        </div>
+        <div class="card text-center">
+            <table class="table m-0">
+                <thead>
+                    <tr>
+                        <th>
+                            Manufacturer
+                        </th>
+                        <th>
+                            Model
+                        </th>
+                        <th>
+                            Power (KW)
+                        </th>
+                        <th>
+                            Capacity
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="idTableBody">
+                </tbody>
+            </table>
+            <div hx-ext="client-side-templates">
+                <div hx-ext="sse" sse-connect="/sse-motorbikes">
+                    <div sse-swap="new_bike" hx-swap="afterbegin" hx-target="#idTableBody" mustache-template="idTemplateInsertModel">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<template id="idTemplateInsertModel">
+    <tr id="idModel_{{modelId}}" class="fadeIn-800">
+        <td>
+            {{manufacturer}}
+        </td>
+        <td>
+            {{model}}
+        </td>
+        <td>
+            {{power}}
+        </td>
+        <td>
+            {{capacity}}
+        </td>
+    </tr>
+</template>
+
+
