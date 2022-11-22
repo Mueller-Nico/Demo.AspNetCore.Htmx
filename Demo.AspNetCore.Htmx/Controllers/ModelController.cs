@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -211,6 +211,21 @@ namespace Demo.AspNetCore.Htmx.Controllers
 
             return PartialView("_successFormPost", "Deleted");
         }
+
+
+        public async Task<IActionResult> GetRow(int modelId)
+        {
+            var model = await _context.Models
+                .Include(m => m.Category)
+                .Include(m => m.Manufacturer)
+                .FirstOrDefaultAsync(m => m.ModelId == modelId);
+            if (model == null)
+            {
+                return Problem("Model not found", statusCode: 404, title: "Error");
+            }
+            return PartialView(model);
+        }
+
 
         private bool ModelExists(int id)
         {

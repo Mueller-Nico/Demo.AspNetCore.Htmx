@@ -194,6 +194,23 @@
         }
     });
 
+    document.body.addEventListener('htmx:sseMessage', function (evt) {
+
+        //* check if this event is the one you want to manipulate
+        if (evt.detail.type !== "new_bike") {
+            return;
+        }
+
+        //* If a JSON string was sent, leave it as it is 
+        //evt.detail.elt.setAttribute("hx-vals", evt.detail.data);
+
+        //* if not
+        var msg = {};
+        msg.modelId = evt.detail.data;   
+        evt.detail.elt.setAttribute("hx-vals", JSON.stringify(msg));
+    });
+
+
     $(document)
         .on('click', 'form button[type=submit]', function (e) {
             var $form = $(e.target).parents('form');

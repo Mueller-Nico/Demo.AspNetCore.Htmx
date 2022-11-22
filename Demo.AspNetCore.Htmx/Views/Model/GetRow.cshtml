@@ -1,0 +1,16 @@
+﻿@model Demo.AspNetCore.Htmx.Models.Model
+<tr id="idModel_@Model.ModelId" class="fadeIn-800">
+    <td>
+        @Html.DisplayFor(modelItem => Model.Manufacturer.ManufacturerName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => Model.ModelName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => Model.Power_KW)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => Model.Capacity)
+    </td>
+</tr>
+

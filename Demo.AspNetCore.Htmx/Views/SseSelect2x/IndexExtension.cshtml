@@ -1,0 +1,88 @@
+﻿@model Model
+<partial name="_title" />
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="text-center">
+            <div class="h6 w-100">
+                <span>Insert a row into a table using a request triggered by an sse-event.</span>
+                <strong>
+                    <a href="#idInfoStack" data-bs-toggle="collapse" class="h4 align-middle float-end text-decoration-none text-toggle" aria-expanded="false">
+                        <span class="text-collapsed">&nbsp;+&nbsp;</span>
+                        <span class="text-expanded">&nbsp;-&nbsp;</span>
+                    </a>
+                </strong>
+            </div>
+            <div id="idInfoStack" class="collapse">
+                Want a quick overview of how it works? <br />
+                Check out my answer to
+                <a href="https://stackoverflow.com/questions/73552671/how-to-get-url-for-htmx-get-from-an-sse-event-which-itself-triggers-the-hx-get-c/74517929#74517929" target="_blank">
+                    this
+                </a>
+                Stackoverflow question.
+            </div>
+        </div>
+
+        <div class="card-header text-center border">
+            <h5 class="text-info">Open the url in an additional browser.</h5>
+            <div class="h-6 text-info">Open the developer tools and watch the network traffic.</div>
+            <hr />
+            <h5> Choose a Motorbike</h5>
+        </div>
+        <div class="border p-3">
+            <div class="form-group" hx-indicator="#indicator">
+                <label>Manufacturers</label>
+                <select asp-for="ManufacturerId" class="form-control" hx-get="/SseSelect2x/Models" hx-target="#ModelId">
+                    <partial name="Manufacturers" model="@ViewBag.Manufacturers" />
+                    <option disabled hidden selected value="">Pick a Manufacturer</option>
+                </select>
+
+            </div>
+            <form class="form-group mt-2">
+                @Html.AntiForgeryToken()
+                <label>Models</label> <span id="indicator" class="htmx-indicator spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                <select asp-for="ModelId" class="form-control"
+                        hx-post="/SseSelect2x/SelectedBikeExtention/">
+                    <option disabled selected value="">Pick a Manufacturer First</option>
+                </select>
+            </form>
+        </div>
+    </div>
+
+    <div class="justify-content-center mt-3">
+        <div class="card-header text-center border">
+            SSE Messages
+        </div>
+        <div class="card text-center">
+            <table class="table m-0">
+                <thead>
+                    <tr>
+                        <th>
+                            Manufacturer
+                        </th>
+                        <th>
+                            Model
+                        </th>
+                        <th>
+                            Power (KW)
+                        </th>
+                        <th>
+                            Capacity
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="idTableBody">
+                </tbody>
+            </table>
+
+            <div hx-ext="sse" sse-connect="/sse-motorbikes">
+                <div hx-get="/Model/GetRow"
+                     hx-trigger="sse:new_bike"
+                     hx-swap="afterbegin"
+                     hx-target="#idTableBody">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,4 +1,4 @@
-
+﻿
 using System.Text.Encodings.Web;
 using Demo.AspNetCore.Htmx.Data;
 using Demo.AspNetCore.Htmx.Extensions;
@@ -10,12 +10,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Demo.AspNetCore.Htmx
 {
-    public class SseSelect2x : Controller
+    public class SseSelect2xController : Controller
     {
         private readonly ApplicationDbContext _context;
         private readonly INotificationsService _notificationsService;
         private readonly HtmlEncoder _htmlEncoder;
-        public SseSelect2x(ApplicationDbContext context, INotificationsService notificationsService, HtmlEncoder htmlEncoder)
+        public SseSelect2xController(ApplicationDbContext context, INotificationsService notificationsService, HtmlEncoder htmlEncoder)
         {
             _notificationsService = notificationsService;
             _htmlEncoder = htmlEncoder;
@@ -36,6 +36,26 @@ namespace Demo.AspNetCore.Htmx
                     return PartialView(model);
                 }
                 ViewData["Title"] = "SSE Insert Row";
+                return View(model);
+
+            }
+            return Problem("Entity set 'ApplicationDbContext.Manufacturers'  is null.");
+        }
+
+        public async Task<IActionResult> IndexExtension()
+        {
+            Model model = new();
+            if (_context.Manufacturers != null)
+            {
+                List<Manufacturer> manufacturers = await _context.Manufacturers.ToListAsync();
+                ViewBag.Manufacturers = manufacturers;
+
+                if (Request.IsHtmxRequest())
+                {
+                    ViewData["TitlePartial"] = "SSE Insert Row Ext";
+                    return PartialView(model);
+                }
+                ViewData["Title"] = "SSE Insert Row Ext";
                 return View(model);
 
             }
@@ -77,6 +97,24 @@ namespace Demo.AspNetCore.Htmx
                 capacity = model.Capacity
             });
 
+            await _notificationsService.SendNotificationAsync(message, type, false, msgId);
+
+            return NoContent();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SelectedBikeExtention(int? ModelId)
+        {
+            if (!ModelId.HasValue)
+            {
+                return Problem("Resouce not found");
+            }
+            string type = "new_bike";
+            string msgId = Guid.NewGuid().ToString();
+            string message = ModelId.Value.ToString();
+
+            //* Only the ID is sent. The client retrieves the model via a request to the ModelController/GetRow
             await _notificationsService.SendNotificationAsync(message, type, false, msgId);
 
             return NoContent();
