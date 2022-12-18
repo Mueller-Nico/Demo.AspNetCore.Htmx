@@ -7,14 +7,14 @@
         <div class="card p-4">
             <div class="form-group" hx-indicator="#indicator">
                 <label>Categories</label>
-                <select data-loading-disable asp-for="CategoryId" class="form-control" hx-get="Select3x/Manufacturers" hx-target="#ManufacturerId">
+                <select data-loading-disable asp-for="CategoryId" class="form-control" hx-get="/Select3x/Manufacturers" hx-target="#ManufacturerId">
                     <partial name="Categories" model="@ViewBag.Categories" />
                     <option disabled hidden selected value="0">Pick a Category</option>
                 </select>
             </div>
             <div class="form-group" hx-indicator="#indicator2">
                 <label>Manufacturers</label> <span id="indicator" class="htmx-indicator spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                <select data-loading-disable asp-for="ManufacturerId" class="form-control" hx-get="Select3x/Models" hx-include="[name='CategoryId']" hx-target="#ModelId">
+                <select data-loading-disable asp-for="ManufacturerId" class="form-control" hx-get="/Select3x/Models" hx-include="[name='CategoryId']" hx-target="#ModelId">
                     <option disabled selected value="0">Pick a Category first</option>
                 </select>
             </div>
