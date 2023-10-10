@@ -130,7 +130,7 @@
     function resetLoadingStates(elt) {
         // workaround for issue 1118 https://github.com/bigskysoftware/htmx/issues/1118
         try {
-            htmx.trigger(elt, "htmx:afterOnLoad");
+            htmx.trigger(elt, "htmx:beforeOnLoad");
         } catch (e) {
             console.error(e);
         }
@@ -155,7 +155,7 @@
         showError(evt.detail.exception.message, "danger", "Error")
     });
 
-    document.body.addEventListener('htmx:afterOnLoad', function (evt) {
+    document.body.addEventListener('htmx:beforeOnLoad', function (evt) {
         //console.info(evt.detail);
     });
 
